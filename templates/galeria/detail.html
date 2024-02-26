@@ -1,0 +1,132 @@
+{% extends 'galeria/base.html' %}
+{% load static %}
+{% block content %}
+
+		<!-- main body - start
+		================================================== -->
+		<main class="mb-5">
+<!-- header-section - start
+		================================================== -->
+		<header  style="margin-top:180px" id="header-section" class="header-section clearfix">
+			<div class="container">
+				<div class="row align-items-center">
+
+					<div class="col-lg-4">
+						<div class="logo">
+							<a href="{% url 'marca_detail' pub.marca.id %}">
+								<img width="100px" class="logo" src="{{ pub.marca.logo }}" alt="logo_not_found">
+							</a>
+							<div class="mobile-menu-btns float-right ul-li-right">
+								<ul class="clearfix">
+									<li>
+										<button type="button" class="menu-btn">
+											<span></span>
+											<span></span>
+											<span></span>
+										</button>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-8">
+						<nav class="main-menu ul-li-right clearfix">
+							<ul class="clearfix">
+
+								<li><a class="text-dark" href="{% url 'marca_detail' pub.marca.id %}">Marca</a></li>
+								<li><a class="text-dark" href="#!">Publicações</a></li>
+								<li><a class="text-dark" href="#!">Brandbook</a></li>
+							</ul>
+						</nav>
+					</div>
+
+				</div>
+			</div>
+		</header>
+
+		<!-- header-section - end
+		================================================== -->
+
+
+			<!-- breadcrumb-section - start
+			================================================== -->
+			<section id="breadcrumb-section" class="breadcrumb-section sec-ptb-100 clearfix">
+				<div class="container">
+
+					<div class="row mb-60 d-flex align-items-center justify-content-lg-between justify-content-md-between justify-content-sm-center">
+						<div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+							<h2 class="page-title mb-0" data-aos="fade-right" data-aos-delay="100">{{pub.marca}}</h2>
+							<span style="color:black; font-weight:300" class="page-title mb-0" data-aos="fade-right" data-aos-delay="400">{{pub.titulo}}</span>
+						</div>
+
+						<div class="col-lg-4 col-md-4 col-sm-7 col-xs-12">
+							<div class="breadcrumb-nev ul-li-right clearfix" data-aos="fade-left" data-aos-delay="300">
+								<ul class="clearfix">
+									<li><a href="index.html"><i class="fas fa-clock mr-1"></i>{{pub.data_criada}}</a></li>
+									<li><i class="fas fa-chevron-circle-right mr-1"></i> {{pub.marca.empresa}}</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<div class="button-group filters-button-group ul-li clearfix" data-aos="fade-right" data-aos-delay="200">
+						<ul class="clearfix">
+							<li><button class="button is-checked" data-filter="*">Todos</button></li>
+
+						</ul>
+					</div>
+
+				</div>
+			</section>
+			<!-- breadcrumb-section - end
+			================================================== -->
+
+
+			<!-- portfolio-section - start
+			================================================== -->
+			<section id="portfolio-section" class="portfolio-section clearfix">
+				<div class="container">
+					<div class="grid row mt--30" style="min-height: 616.188px!important;">
+
+
+						{% for arquivo in arquivos %}
+							{% if arquivo.tipo == 'video' %}
+							<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 element-item ">
+									<div class="portfolio-fullimage bg-white" data-aos="fade-up" data-aos-delay="300">
+									 <video style="min-width: 100%; min-height: 100%;" width="100%" height="100%" controls>
+												<source src="{{arquivo.url}}" type="video/mp4">
+												Seu navegador não suporta a reprodução de vídeos em HTML5.
+									</video>
+									</div>
+							</div>
+							{% endif %}
+							{% if arquivo.tipo == 'image' %}
+								<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 element-item 3ddesign " data-category="3ddesign">
+								<div class="portfolio-fullimage bg-white" data-aos="fade-up" data-aos-delay="300">
+									<img src="{{arquivo.url}}" alt="image_not_found">
+									<a target="_blank" href="{{arquivo.url}}" class="details-btn"><i class="fal fa-plus"></i></a>
+									<div class="item-content">
+										<h3 class="item-title">{{arquivo}} {{arquivo.url}}</h3>
+										<span class="item-brand">{{arquivo.title}}</span>
+									</div>
+								</div>
+							</div>
+							{% endif %}
+
+
+
+						{% endfor %}
+
+					</div>
+				</div>
+			</section>
+			<!-- portfolio-section - end
+			================================================== -->
+
+
+		</main>
+		<!-- main body - end
+		================================================== -->
+
+{% endblock %}

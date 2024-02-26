@@ -1,0 +1,139 @@
+{% extends 'galeria/base.html' %}
+{% load static %}
+{% block content %}
+
+		<main>
+
+
+			<!-- about-section - start
+			================================================== -->
+			<section style="margin-top:160px" class=" about-section sec-ptb-100 pt-5 clearfix">
+				<div class="container mt-5">
+
+					<div class="row align-items-center justify-content-lg-between justify-content-md-between justify-content-sm-center">
+						<div class="col-lg-5 col-md-6 col-sm-8 col-xs-12">
+							<div class="about-image creative-image" data-aos="fade-up" data-aos-delay="100">
+								<img src="{{marca.logo}}" alt="image_not_found">
+							</div>
+						</div>
+
+						<div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">
+							<div class="about-content" data-aos="fade-up" data-aos-delay="300">
+								<h2 class="item-title has-line mb-30">
+									{{marca}}
+								</h2>
+								<p class="mb-0">
+									{{marca.descricao}}
+								</p>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</section>
+
+			<section id="portfolio-section" class="portfolio-section pb-0 bg-default-black text-white text-center clearfix">
+
+				<div class="container " data-aos="fade-up" data-aos-delay="100">
+					<div class="section-title">
+						<div class="item">
+									<a class="partner-logo" href="#!">
+										<img class="before-image" src="{% static 'empresas/nomadz-1.png' %}" alt="image_not_found">
+									</a>
+								</div>
+						<p class="mb-0">Direitos reservados a <strong>{{marca.empresa}}</strong> e <strong>{{marca}}</strong></p>
+					</div>
+				</div>
+			</section>
+
+			<!-- about-section - end
+			================================================== -->
+
+
+
+
+
+			<!-- team-section - start
+			================================================== -->
+			<section id="team-section" class="team-section bg-gray sec-ptb-100 clearfix">
+				<div class="container">
+
+					<div class="section-title mb-30" data-aos="fade-up" data-aos-delay="100">
+						<h2 class="title-text mb-15">Publicações ( {{marca.publicacao_set.count}} )</h2>
+						<p class="mb-0">Última atualização {{marca.publicacao_set.first.data_criada}}</p>
+					</div>
+
+					<div id="team-carousel" class="team-carousel owl-carousel owl-theme arrow-top-right" data-aos="fade-up" data-aos-delay="300">
+
+						{% for pub in marca.publicacao_set.all %}
+						<div class="item">
+							<div class="team-fullimage text-center clearfix">
+								<img src="{{pub.img}}" alt="image_not_found">
+								<div class="item-content">
+									<div class="person-name"><h3>{{pub}}</h3></div>
+									<div class="person-title"><span>Mobile Developer</span></div>
+									<div class="social-links ul-li-center clearfix">
+										<ul class="clearfix">
+											<li><a href="{% url 'pub_detail' pub.id %}"><i class="fas fa-eye"></i></a></li>
+
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+
+
+					</div>
+
+				</div>
+			</section>
+			<!-- team-section - end
+			================================================== -->
+
+
+			<!-- testimonial-section - start
+			================================================== -->
+			<section id="testimonial-section" class="testimonial-section sec-ptb-100 clearfix">
+				<div class="container">
+
+					<div class="section-title mb-60" data-aos="fade-up" data-aos-delay="100">
+						<h2 class="title-text mb-15">O que o cliente diz</h2>
+						<p class="m-0">
+							Mensagens recebidas na plataforma
+						</p>
+					</div>
+
+					<div id="testimonial-carousel-2" class="testimonial-carousel-2 arrow-top-right owl-carousel owl-theme" data-aos="fade-up" data-aos-delay="300">
+						<div class="item">
+							<div class="testimonial-boxed">
+								<div class="person-image">
+									<img src="{{marca.logo}}" alt="image_not_found">
+								</div>
+								<div class="person-comment">
+									<p class="mb-30">
+										Your cells react to engine bacteria and viruses differently than mine. You don't get sick, I doesnt. That's also clear. But for some reason.
+									</p>
+									<h4 class="person-name">Fatima Mahmoud</h4>
+									<span class="person-title">Aramica Founder</span>
+								</div>
+								<small class="quote-icon">
+									<img src="{% static 'assets/images/icons/icon_1.png' %}" alt="image_not_found">
+								</small>
+							</div>
+						</div>
+
+
+					</div>
+
+				</div>
+			</section>
+			<!-- testimonial-section - end
+			================================================== -->
+
+
+		</main>
+
+
+{% endblock %}
+

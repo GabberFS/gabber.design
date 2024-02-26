@@ -1,0 +1,205 @@
+{% extends 'galeria/base.html' %}
+{% load static %}
+{% block content %}
+<!-- header-section - end
+		================================================== -->
+		<main>
+
+	<!-- banner-section - start
+			================================================== -->
+			<section id="banner-section" class="banner-section portfolio-4-banner d-flex align-items-end bg-default-black text-white clearfix">
+				<div class="container">
+					<div class="row justify-content-lg-between">
+
+						<div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
+							<div class="banner-content">
+								<h3 data-aos="fade-right" data-aos-delay="100">Me chamo</h3>
+								<h1 data-aos="fade-right" data-aos-delay="200">Gabriel O.</h1>
+								<p class="mb-0" data-aos="fade-right" data-aos-delay="300">Designer e Desenvolvedor Web</p>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+			</section>
+			<!-- banner-section - end
+			================================================== -->
+			<!-- breadcrumb-section - start
+			================================================== -->
+			<section id="breadcrumb-section" class="breadcrumb-section sec-ptb-100 clearfix">
+				<div class="container">
+
+					<div class="row mb-60 d-flex align-items-center justify-content-lg-between justify-content-md-between justify-content-sm-center">
+						<div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+							<h6  class="page-title " data-aos="fade-right" data-aos-delay="200">Social Media</h6>
+						</div>
+
+						<div class="col-lg-4 col-md-4 col-sm-7 col-xs-12">
+							<div class="breadcrumb-nev ul-li-right clearfix" data-aos="fade-left" data-aos-delay="300">
+								<ul class="clearfix">
+									<li><i class="fas fa-chevron-circle-right mr-1"></i>Social Media</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<div class="button-group filters-button-group ul-li clearfix" data-aos="fade-right" data-aos-delay="200">
+						<ul class="clearfix">
+							<li><button class="button is-checked" data-filter="*">Todos</button></li>
+							<li><button class="button" data-filter=".reels">Reels</button></li>
+							<li><button class="button" data-filter=".campanha">Campanha</button></li>
+							<li><button class="button" data-filter=".interativo">Interativos</button></li>
+						</ul>
+					</div>
+
+				</div>
+			</section>
+			<!-- breadcrumb-section - end
+			================================================== -->
+
+
+
+
+			<!-- portfolio-section - start
+			================================================== -->
+			<section id="portfolio-section-2" class="portfolio-section clearfix">
+				<div class="container-fluid">
+					<div class="grid row mt--30">
+					{% for pub in pubs %}
+						{% if pub.tipo == 'sm' %}
+
+						<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 element-item {{pub.tag}} " data-category="{{pub.tag}}">
+							<div class="portfolio-fullimage bg-white" data-aos="fade-up" data-aos-delay="100">
+								<img src="{{pub.img }}" alt="image_not_found">
+								<a href="{% url 'pub_detail' pub.id  %}" class="details-btn"><i class="fal fa-plus"></i></a>
+								<div class="item-content">
+									<a class="item-title" href="{% url 'marca_detail' pub.marca.id %}">	<img width="30%" src="{{pub.marca.logo}}" class="item-title"></a>
+
+
+									<h3 class="item-title">{{pub.titulo}}</h3>
+									<h2 class="item-brand">Empresa: {{pub.marca.empresa}}</h2> <br>
+									<span class="item-brand">{{pub.marca}} - {{pub.data_criada|date:"d/m/Y"}}</span> <br>
+									<span class="item-brand">Arquivos: {{pub.arquivo_set.all|length}}</span>
+								</div>
+							</div>
+						</div>
+					{% endif %}
+					{% endfor %}
+
+
+
+					</div>
+				</div>
+			</section>
+			<!-- portfolio-section - end
+			================================================== -->
+
+			<div id="partners-section" class="partners-section sec-ptb-100 bg-light-gray clearfix"  data-aos="fade-up" data-aos-delay="300">
+				<div class="container aos-init aos-animate">
+					<div id="partners-carousel" class="partners-carousel arrow-left-right owl-carousel owl-theme owl-loaded owl-drag">
+					<div class="owl-stage-outer">
+						<div class="owl-stage" style="transform: translate3d(-1799px, 0px, 0px); transition: all 1s ease 0s; width: 4112px;">
+							<div class="owl-item cloned" style="width: 257px;">
+								<div class="item">
+									<a class="partner-logo" href="#!">
+										<img class="before-image" src="{% static 'empresas/nomadz-1.png' %}" alt="image_not_found">
+										<img class="after-image" src="{% static 'empresas/nomadz-2.png' %}" alt="image_not_found">
+									</a>
+								</div>
+							</div>
+
+
+
+
+						<div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div><div class="owl-dots disabled"></div></div>
+				</div>
+			</div>
+				</div>
+			</div>
+
+
+			<section id="portfolio-section" class="portfolio-section sec-ptb-100 pb-0 clearfix">
+				<div class="container">
+
+					<div class="row mb-60 justify-content-lg-end justify-content-md-start">
+						<div class="col-lg-7 col-md-9">
+							<div class="section-title size-increase border-left" data-aos="fade-up" data-aos-delay="100">
+								<h2 class="title-text mb-15">
+								Criação de identidade
+								</h2>
+							</div>
+						</div>
+					</div>
+					{% for pub in pubs %}
+						{% if pub.tipo == 'id' %}
+					<div id="portfolio-carousel-2" class="portfolio-carousel-2 owl-arrow owl-carousel owl-theme" data-aos="fade-up" data-aos-delay="300">
+						<div class="item">
+							<a href="#!" class="portfolio-fullimage add-effect">
+								<img src="{{pub.img}}" alt="image_not_found">
+								<span class="item-content-2">
+									<strong class="item-title">{{pub.titulo}}</strong>
+									<small class="item-brand">{{pub.marca}}</small>
+								</span>
+							</a>
+						</div>
+						{% endif %}
+					{% endfor %}
+
+
+					</div>
+
+				</div>
+			</section>
+
+
+	<!-- banner-section - start
+			================================================== -->
+
+
+
+<section id="contact-section" class="contact-section sec-ptb-100 clearfix">
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-lg-6 col-md-7 col-sm-8">
+
+							<div class="section-title size-increase text-center mb-60">
+								<h2 class="title-text mb-0">
+									Vamos desenvolver seu projeto criativo?
+								</h2>
+							</div>
+
+							<div class="form-wrap mb--30">
+								<form action="#">
+									<div class="row align-items-center justify-content-lg-between">
+
+										<div class="col-lg-10 col-md-12 d-flex">
+											<div class="form-item  m-2">
+												<input type="tel" name="telephone" placeholder="Nome">
+											</div>
+
+											<div class="form-item m-2">
+												<input type="tel" name="telephone" placeholder="Contato">
+											</div>
+
+
+										</div>
+
+										<div class="col-lg-2 col-md-12">
+											<button type="submit" class="submit-btn-icon">
+												<i class="fal fa-arrow-circle-right"></i>
+											</button>
+										</div>
+									</div>
+								</form>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</section>
+
+		</main>
+		<!-- main body - end
+		================================================== -->
+{% endblock %}
